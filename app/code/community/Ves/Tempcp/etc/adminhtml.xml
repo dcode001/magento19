@@ -1,0 +1,22 @@
+<?xml version="1.0"?> 
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <ves_tempcp_info>
+                                        <title>Ves Tempcp</title>
+                                    </ves_tempcp_info>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,99 @@
+<?php 
+	$randid = rand();
+	$mainWidth = isset($config['mainWidth']) ? $config['mainWidth'] : 640;
+	$mainHeight = isset($config['mainHeight']) ? $config['mainHeight'] : 300;	
+	
+	$interval = isset($config['interval']) ? $config['interval'] : 5000;
+	$effect = isset($config['animation']) ? $config['animation'] : 'easeInOutExpo';
+	$duration = isset($config['duration']) ? $config['duration'] : 500;
+	$startItem = isset($config['startItem']) ? $config['startItem'] : 0;
+	$auto_start = isset($config['auto_start']) ? $config['auto_start'] : 0;
+	$maxItemDisplay = isset($config['showItem']) ? $config['showItem'] : 3;
+	$navPosition = isset($config['navigationAlignment']) ? $config['navigationAlignment'] : 'horizontal';
+
+	$navigatorHeight = (int)(isset($config['navItemHeight']) ? $config['navItemHeight'] : 30) + (int)(isset($config['thumbnail_padding_x']) ? $config['thumbnail_padding_x'] : 6);
+	$navigatorWidth = (int)(isset($config['navItemWidth']) ? $config['navItemWidth'] : 30) + (int)(isset($config['thumbnail_padding_x']) ? $config['thumbnail_padding_x'] : 6);
+	$shadow = isset($config['shadow']) ? $config['shadow'] : 1;
+	
+	$thumbnail_width = isset($config['thumbnail_width']) ? $config['thumbnail_width'] : 85;
+	$thumbnail_height = isset($config['thumbnail_height']) ? $config['thumbnail_height'] : 35;
+	
+	$thumbnailMargin = isset($config['thumbnail_margin']) ? $config['thumbnail_margin'] : '5px';
+	$moduleHeight = isset($config['moduleHeight']) ? $config['moduleHeight'] : '300';
+	$moduleWidth = isset($config['moduleWidth']) ? $config['moduleWidth'] : '640';
+	$enableCSS3 = isset($config['enable_css3']) ? $config['enable_css3'] : 1;
+	$css3Class = $enableCSS3 ? ' lof-css3':'';	
+?>
+<?php if($listImgs){ ?>
+<?php	if( $this->isStaticBlock() ){
+	?>	
+	<link media="all" href="<?php echo $this->getSkinUrl("lof_slider/default/style.css"); ?>" type="text/css" rel="stylesheet"/>
+
+	<?php } ?>
+<?php $randid = rand(); ?>
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready( function(){	
+	var buttons = { previous:jQuery('#lofslidecontent<?php echo $randid; ?> .lof-previous') ,
+					next:jQuery('#lofslidecontent<?php echo $randid; ?> .lof-next') };		
+	$obj = jQuery('#lofslidecontent<?php echo $randid; ?>').lofJSidernews( { interval : <?php echo $interval  ?>,
+											direction		: 'blank',	
+										 	easing			: '<?php echo $effect ?>',
+											duration		: <?php echo $duration ?>,
+											startItem		: <?php echo $startItem ?>,
+											auto			: <?php echo $auto_start ?>,
+											maxItemDisplay  : <?php echo $maxItemDisplay ?>,
+											navPosition     : '<?php echo $navPosition ?>',
+											navigatorHeight : <?php echo $navigatorHeight ?>,
+											navigatorWidth  : <?php echo $navigatorWidth ?>,
+											mainWidth		: <?php echo $mainWidth ?>,
+											mainHeight		: <?php echo $mainHeight ?>,													
+											buttons			: buttons} );	
+											
+});
+</script>
+<?php }?>
+<?php if($config['title']){?><h2><?php echo $config['title']; ?></h2><?php } ?>
+<div style="height: <?php echo $moduleHeight; ?>px; width: <?php echo $moduleWidth; ?>px;" class="lof-slider" id="lofslidecontent<?php echo $randid; ?>">
+  <div class="lof-wrapper <?php echo $css3Class; ?>">
+		<!--<div class="preload" style="display: none;"><div></div></div>-->
+		<div style="height: <?php echo $mainHeight ?>px; width: <?php echo $mainWidth ?>px;" class="lof-main-outer">	
+			<div class="lof-main-wapper"> 		  		
+					<?php for ($i=0;$i<count($listImgs); $i++): ?>		
+						<div style="height:<?php echo $mainHeight;?>px;width:<?php echo $mainWidth;?>px;" class="lof-item">
+						<img src="<?php echo  $mainsThumbs[$i];?>" />								   
+						  <?php if($config['showdesc'] && !empty($captionsArray[$i]) ): ?>						  
+							  <div class="lof-description"><?php echo $captionsArray[$i]?><?php if ($config['showdesc']=='desc-readmore'){?><a class="readon" title=""><span><?php echo $config['readmoretext'];?></span></a><?php }?></div>										
+						  <?php endif; ?>
+						
+						</div> 
+					<?php endfor; ?>				
+			</div>    	
+		</div>
+		<!-- END MAIN CONTENT --> 
+		
+		<?php if($navPosition) : ?>
+		<div class="lof-navigator-wapper lof-<?php echo $navPosition; ?>">
+			<?php if ($config['control']): ?>
+				<div class="lof-next" onclick="return false" style="width: <?php echo $navigatorWidth; ?>px;">Next</div>
+			<?php endif; ?>		
+				<div class="lof-navigator-outer"> 
+					<ul class="lof-navigator">
+						<?php for ($i=0;$i<count($listImgs); $i++) { ?>									
+							<li>
+								<img src="<?php echo $thumbArray[$i]?>"  />									   
+							</li>
+						<?php } ?>		
+					</ul>
+				</div>
+			<?php if ($config['control']): ?>
+				<div class="lof-previous" onclick="return false" style="width: <?php echo $navigatorWidth; ?>px;">Previous</div>  		
+			<?php endif; ?>
+		</div>
+		<?php endif; ?> 
+	</div>
+	<?php if( $shadow ): ?>
+	<div class="lof-bottom-bg">&nbsp;</div>   
+	<?php endif; ?>  
+</div>
+

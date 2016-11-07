@@ -1,0 +1,105 @@
+<?php 
+
+	$tabs = array( "news"		=> $this->__('New Arrival '),
+				   "featured"	=> $this->__("Featured"),
+				   "specical"	=> $this->__("Special"),
+				   "bestseller"	=> $this->__("Best Seller"),
+				   "mostview"	=> $this->__("Most Viewed")
+	);
+	$current = 0;
+	$modid=rand();
+	$itemsrow = $this->getConfig("itemsrow",4);
+ 
+	$width = $this->getConfig("module_width","auto");
+	$width = $width == "auto"?'':'style="width:'.(int)$width.'px"';
+		// echo 'hhahaddd'; die;
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<div class="ves-hometab" <?php echo $width;?> >
+	<div class="hometab-wrapper" id="veshometab">
+
+        	<div class="hometab-nav">		
+				<ul class="tabnav-wrapper">
+					<?php $i=0;foreach( $tabs as  $tab => $text):?>
+					<?php if( isset($$tab) && !empty($$tab)  ):  $class=($i==$current?"current":"");  ?>
+					<li class="nav-<?php echo $tab;?>"><a href="#products-<?php echo $tab;?>" class="<?php echo $class;?>"><span><?php echo ucfirst($text);?><span></a></li>					
+					<?php $i++; endif; ?>
+					<?php endforeach; ?>
+				</ul>
+        	</div>
+			
+			
+        	<div class="hometab-contents vesclear"><div class="tabcontents-wrapper">
+        		<?php $i=0; foreach( $tabs as $tab => $text ):?>
+				<?php if( isset($$tab) && !empty($$tab) ):   $class=($i==$current?"":"hide");  $products = $$tab; ?>
+				<div id="products-<?php echo $tab;?>" class="<?php echo $class;?> vesclear" style="width:100%">
+					<div class="vesclear column<?php echo $itemsrow;?>">
+						<ul>
+							<?php $k=0; foreach( $products as $_product ): 							
+								$class = ''; $k++;
+								 if( $k==1 ){
+									$class = 'class="first"';
+								 }elseif($k%$itemsrow==0){
+									$class = 'class="last"';
+								 }
+								 
+							?>
+								<li <?php echo $class?>><div>
+									<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(250) ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+									<?php if( $this->getConfig('show_title',1) ) : ?>
+									<h4>
+										<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a>
+									</h4>
+									<?php endif; ?>
+									<?php if ( $this->getConfig('show_des') ): ?>
+									<div class="short-description">
+										<?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+									</div>
+									<?php endif; ?>
+									<?php if ( $this->getConfig('review',1) ): ?>
+										<div class="review"><?php echo $this->getReviewsSummaryHtml($_product, 'short') ?></div>
+									<?php endif; ?>
+									<?php if($this->getConfig('show_price',1)): ?>
+										<div class="item-price vesclear">
+										<?php echo $this->getPriceHtml($_product, true) ?>
+										</div>
+									<?php endif; ?>
+									
+									<?php if ($this->getConfig('show_btn',1) ):?>
+									<div class="button-actions">			                	
+										<?php if($_product->isSaleable()): ?>
+										<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+										<?php else: ?>
+										<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+										<?php endif; ?>
+										<?php if ($this->getConfig('detail') ):?>
+										<button type="button" title="<?php echo $this->__('Detail') ?>" class="button btn-detail" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')"><span><span><?php echo $this->__('Detail') ?></span></span></button>
+										<?php endif; ?>
+									</div>
+									<?php else: ?>
+								 
+									<?php endif; ?>
+						
+									</div>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+						 
+						
+ 
+					</div>
+					 
+        		</div>
+				<?php $i++; endif; ?>
+        		<?php endforeach; ?>
+        		 
+        	 </div> </div>
+        
+		 
+		 
+	<script type="text/javascript">
+        jQuery(function( $ ) { $("#veshometab").organicTabs();    });
+    </script>
+			
+	</div>
+</div>

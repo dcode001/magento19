@@ -1,0 +1,316 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <ves translate="label" module="ves_tempcp">
+            <label>Venus Extensions</label>
+            <sort_order>210</sort_order>
+        </ves>
+    </tabs>
+    <sections>
+        <ves_tempcp_info>
+            <label>Ves Template Panel</label>
+            <tab>ves</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <ves_tempcp>
+                    <label>General Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields> 
+                        <last_update translate="label">
+                            <label>Current Update Time</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>ves_tempcp/system_config_form_field_notification</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </last_update> 
+                       
+                       <!--
+                       <templatewidth>
+                           <label>Template Width</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Set Template Width in number(px) or number(%), for example 980px, 99%</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </templatewidth>
+                       -->
+                       
+                       <skin translate="label">
+                            <label>Default skin</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ves_tempcp/system_config_source_ListSkin</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </skin>
+                        <layout translate="label">
+                            <label>Layout Derection</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ves_tempcp/system_config_source_ListLayout</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </layout>
+                        
+                        <paneltool translate="label">
+                            <label>Panel Tool</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </paneltool>
+                        <responsive translate="label">
+                            <label>Responsive feature</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </responsive>
+                         <enablejquery translate="label">
+                            <label>Enable jQuery</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enablejquery>
+						<panelposition>
+                           <label>Panel Position</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Input the block's name, which you want dislay panel in that, for example: top.container OR top.menu</comment>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </panelposition>
+                        <backgroundpattern>
+                            <label>Background Pattern</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>Ves_Tempcp_Model_System_Config_Source_CustomField</frontend_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </backgroundpattern>
+                        
+                         <!-- 
+                        <blockPosition translate="label">
+                            <label>Block Position</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ves_tempcp/system_config_source_ListPosition</source_model>
+                            <sort_order>8</sort_order>
+                            <comment>Choose a block position</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </blockPosition>
+                       
+                        <customBlockPosition translate="label">
+                            <label>Custom Position</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>42</sort_order>
+                            <comment>Type block position name exm: left, right...</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </customBlockPosition>
+                        -->
+                    </fields> 
+                </ves_tempcp>
+			
+				<theme_info>
+                    <label>General Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields> 
+                        <theme_info translate="label">
+                            <label></label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>Ves_Tempcp_Block_System_Config_Form_Field_ThemeInfo</frontend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </theme_info>                        
+                    </fields>
+                </theme_info>
+                <font_setting>
+					<label>Google Font Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+					<fields>
+						 <enable_customfont translate="label">
+                            <label>Enable Cusomt Font</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							 <comment>As default font family is feature included in theme. Enable this option you may change font family for entire of site follow your ideas</comment>
+                        </enable_customfont>
+						
+						<fonturl1  translate="label">
+                           <label>Font URL</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Example: http://fonts.googleapis.com/css?family=Petit+Formal+Script</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </fonturl1>
+					   
+					   <fontfamily1  translate="label">
+                           <label>Font Family</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Petit Formal Script</comment>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </fontfamily1>
+					   
+					   <fontselectors1  translate="label">
+                           <label>Font Selectors</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment>body, .ves-bigfont</comment>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </fontselectors1>
+						
+						<fonturl2>
+                           <label>Header Font URL</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Example: http://fonts.googleapis.com/css?family=Petit+Formal+Script</comment>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </fonturl2>
+					   <fontfamily2>
+                           <label>Header Font Family</label>
+                            <frontend_type>text</frontend_type>
+                           <comment>h1,h2,h3,h4,h5,.caption</comment>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </fontfamily2>
+						<fontselectors2>
+                           <label>Header Font Selectors</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment>body, .ves-bigfont</comment>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </fontselectors2>
+					   
+					   <fonturl3>
+                           <label>Other 1 Font URL</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Example: http://fonts.googleapis.com/css?family=Petit+Formal+Script</comment>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </fonturl3>
+					   <fontfamily3>
+                           <label>Other 1 Font Family</label>
+                            <frontend_type>text</frontend_type>
+                           <comment>h1,h2,h3,h4,h5,.caption</comment>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </fontfamily3>
+						<fontselectors3>
+                           <label>Other 1 Font Selectors</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment>body, .ves-bigfont</comment>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </fontselectors3>
+					   
+					    <fonturl4>
+                           <label>Other 2 Font URL</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Example: http://fonts.googleapis.com/css?family=Petit+Formal+Script</comment>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </fonturl4>
+					   <fontfamily4>
+                           <label>Other 2 Font Family</label>
+                            <frontend_type>text</frontend_type>
+                           <comment>h1,h2,h3,h4,h5,.caption</comment>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </fontfamily4>
+						<fontselectors4>
+                           <label>Other 2 Font Selectors</label>
+                            <frontend_type>textarea</frontend_type>
+                            <comment>body, .ves-bigfont</comment>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </fontselectors4>
+					   
+					</fields>
+				</font_setting>
+				<advanded_parameter>
+                    <label>Information - Support</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>6001</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+
+                    <fields> 
+                        <module_information translate="label">
+                            <label>Set Module Visable On Pages, Position</label>
+                            <frontend_type>label</frontend_type>
+                            <frontend_model>Ves_Tempcp_Block_System_Config_Form_Field_Information</frontend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </module_information>                        
+                    </fields>
+                </advanded_parameter>
+            </groups>
+        </ves_tempcp_info>
+    </sections>    
+</config>

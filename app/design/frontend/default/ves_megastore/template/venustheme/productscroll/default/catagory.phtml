@@ -1,0 +1,197 @@
+<?php 
+/*------------------------------------------------------------------------
+# Venustheme_ProductScroll Module, Build for Magento
+# ------------------------------------------------------------------------
+# @Copyright (C) 2008-2012 Venustheme. All Rights Reserved.
+# @License - Copyrighted Commercial Software
+# @Author: Venustheme
+# @Websites: http://venustheme.com
+-------------------------------------------------------------------------*/ 	
+?>
+<?php
+	$config = $this->_config;
+	$moduleId = rand().time();
+	$enabled = (!isset($config['show'])) ? '1' : $config['show'];
+	
+	$title = $this->getConfig('title', '');
+	
+	$theme = $this->getConfig('theme', 'default');
+	
+	$tmp = $this->getConfig('moduleWidth', 'auto');
+	$moduleWidth = ($tmp == 'auto') ? 'auto' : (int)$tmp."px";
+	$tmp = $this->getConfig('moduleHeight', 'auto');
+	$moduleHeight = ($tmp == 'auto') ? 'auto' : (int)$tmp."px";
+	
+	$show_title = (!isset($config['show_title'])) ? '1' : $config['show_title']; // title product
+	$show_date = (!isset($config['show_date'])) ? '0' : $config['show_date'];
+	$show_price = (!isset($config['show_price'])) ? '1' : $config['show_price'];
+	$priceSpecial = (!isset($config['show_pricewithout'])) ? '1' : $config['show_pricewithout'];
+	$show_desc = (!isset($config['show_desc'])) ? '0' : $config['show_desc'];
+	$show_addcart = (!isset($config['show_addcart'])) ? '1' : $config['show_addcart'];
+	
+	$show_button = (!isset($config['show_button'])) ? '1' : $config['show_button'];
+	$show_pager = (!isset($config['show_pager'])) ? '1' : $config['show_pager'];
+	
+	$auto_play = (!isset($config['auto_play'])) ? '0' : $config['auto_play'];
+	$auto_play = ($auto_play == 1) ? 'true' : 'false';
+	
+	
+	$tp = $this->getConfig('slide_width', 'auto');
+	$slide_width = ($tp == 'auto') ? '\'auto\'' : (int)$tp;
+	$tp = $this->getConfig('slide_height', 'auto');
+	$slide_height = ($tp == 'auto') ? '\'auto\'' : (int)$tp;
+	
+	$scroll_items = $this->getConfig('scroll_items', '1');
+	$limit_cols = $this->getConfig('limit_cols', '4');
+	$duration = $this->getConfig('duration', 501);
+	$thumbWidth = $this->getConfig('thumbWidth');
+	$thumbHeight = $this->getConfig('thumbHeight');
+?>
+<?php if($enabled == 1)://start enabled?>
+
+
+<div class="position-content wrap-ves-productscroll clearfix">
+
+	<div class="productscroll-header page-title">
+		<h3 class="productscroll-title"><?php echo $title;?></h3>
+		
+		<?php if( $pretext=$this->getConfig("pretext","") ) : ?>
+			<div class="pretext"><?php echo $pretext;?></div>
+		<?php endif; ?>
+	</div>		
+<div class="ves-productscroll <?php echo $theme;?>" style="width:<?php echo $moduleWidth;?>;height:<?php echo $moduleHeight;?>">
+		<div class="list-productscroll responsive"><!--start class="list-productscroll"-->
+			<ul id="ves-productscroll-<?php echo $moduleId;?>" >
+				<?php foreach($items as $item): //start foreach?>
+				<li>
+						<div class="productscroll-item box-hover clearfix item-content">				
+								<div class="image-thumb">
+								<div class="wrap-images" style="height:<?php echo $thumbHeight; ?>px">
+									<a href="<?php echo $item['link'];?>" title="<?php echo $item['title'];?>">
+										<img src="<?php echo $this->helper('catalog/image')->init($item['obj'], 'small_image')->resize($thumbWidth, $thumbHeight ) ?>" title="<?php echo $item['title']; ?>"/>
+									</a>
+								</div>	
+								<?php if( $this->getConfig("show_wc",0) ): ?>
+								<div class="productscroll-action">
+									<a class="list-cart" href="<?php echo $item['link'];?>" title="<?php echo $this->__('Add to cart');?>">								
+									</a>
+									<div class="add-to-links">
+										<div class="left">										
+											<a class="add-to-wishlist" href="<?php echo $item['wishlistUrl']?>" title="<?php echo $this->__('Wishlist')?>"><?php echo $this->__('Wishlist')?></a>										
+										</div>
+										<div class="right">
+											<a class="add-to-compare" href="<?php echo $item['compareUrl']?>" title="<?php echo $this->__('Compare')?>"><?php echo $this->__('Compare')?></a>
+										</div>
+									</div>	
+								</div>
+								<?php endif; ?>
+								<?php if( $item['ves_new_icon'] || $item['ves_features'] ): ?>
+								<div class="product-icon">
+									<?php if($item['ves_new_icon']):?>
+										<span class="new"></span>
+									<?php elseif($item['ves_features']):?>
+										<span class="feature"></span>
+									<?php endif;?>
+								</div>
+								<?php endif; ?>
+							</div>
+							<div class="entry-content">
+	 							
+								
+								<?php if($show_title)://start show_title?>
+									<h4 class="entry-title">
+										<a href="<?php echo $item['link'];?>"><?php echo $item['title'];?></a>
+									</h4>
+								<?php endif; //end show_title?>
+								
+								<?php
+									$rating = $item['rating_summary'];
+									if($rating && $this->getConfig("show_rating") ):					
+								?>
+								<div class="ratings">
+									<a href="<?php echo $item['link'];?>" title="<?php echo $item['title'];?>">
+										<div class="rating-box">
+											<div class="rating" style="width:<?php echo $rating;?>%"></div>
+										</div>
+										<span class="amount">
+											<?php echo $item['reviews_count'];?><?php echo $this->__(' Review(s)')?>										
+										</span>
+									</a>
+								</div>
+								<?php endif; //end Rating?>	
+								
+								<?php if($show_desc)://start show_desc?>
+									<p class="desc"><?php echo $item['des'];?></p>
+								<?php endif; //end show_desc?>
+								
+								<div class="price-box">
+								<?php if($item['checkPrice'] > 0):?>
+									<?php if($show_price)://start show_price?>
+										<p class="entry-price old-price"><span class="price"><?php echo $item['price'];?></span></p>
+									<?php endif; //end show_price?>
+									<?php if($priceSpecial)://start show_priceSpecial?>
+										
+										<p class="regular-price">
+											<span class="price"><?php echo $item['price_ves_reduction'];?></span>
+										</p>
+										
+									<?php endif; //end show_priceSpecial?>
+								<?php else:?>
+									<?php if($show_price)://start show_price?>
+										<span class="regular-price">
+											<span class="price"><?php echo $item['price'];?></span>
+										</span>
+									<?php endif; //end show_price?>
+								<?php endif;?>
+								
+								</div>
+								<?php if ($this->getConfig('show_addcart') ):?>
+									<div class="button-actions">			                	
+									 <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $item['cart_link']; ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+									</div>
+								<?php endif; ?>
+								
+							</div>
+						</div>
+						
+				</li>
+				<?php endforeach; //end foreach?>
+			</ul><!--end tag ul-->
+			<?php if($show_button): //start show_button?>
+			<div class="productscroll-nav">
+				<a id="vesprev-<?php echo $moduleId;?>" class="prev" href="#">&nbsp;</a>
+				<a id="vesnext-<?php echo $moduleId;?>" class="next" href="#">&nbsp;</a>
+			</div>
+			<?php endif; //end show_button?>
+			<?php if($show_pager): //start show_pager?>
+			<div id="vespager-<?php echo $moduleId;?>" class="ves-pager"></div>
+			<?php endif; //end show_pager?>
+		</div><!--end class="list-productscroll"-->
+	
+</div>
+</div>
+
+<script type="text/javascript">
+	jQuery('#ves-productscroll-<?php echo $moduleId;?>').carouFredSel({
+		responsive:true,
+		prev: '#vesprev-<?php echo $moduleId;?>',
+		next: '#vesnext-<?php echo $moduleId;?>',
+		pagination: "#vespager-<?php echo $moduleId;?>",
+		auto: <?php echo $auto_play;?>,
+		width: <?php echo $slide_width;?>,
+		height: <?php echo $slide_height;?>,
+		scroll: {
+			items : <?php echo $scroll_items;?>,
+			duration : <?php echo $duration;?>,
+		},
+		items:{
+			width:200,
+			visible:{
+				min:1,
+				max:<?php echo $limit_cols;?>
+			}
+		}
+	});	
+</script>
+<?php endif;//end enabled menu?>
+

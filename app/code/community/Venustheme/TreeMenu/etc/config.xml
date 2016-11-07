@@ -1,0 +1,133 @@
+<?xml version="1.0"?>  
+<config>  
+    <modules>  
+        <Venustheme_TreeMenu>  
+            <version>1.1.0</version>  
+        </Venustheme_TreeMenu>  
+    </modules> 
+ <adminhtml>
+<menu>
+            <vesextensions module="venustheme_treemenu">
+                <title>VenusTheme</title>
+                <sort_order>53</sort_order>
+                <children>
+					<treemenu translate="title" module="venustheme_treemenu">
+						<title>Ves TreeMenu</title>
+						<children>
+							
+							<configuration translate="title" module="venustheme_treemenu">
+								<title>Configuration</title>
+								<sort_order>4</sort_order>
+								<action>adminhtml/system_config/edit/section/venustheme_treemenu</action>
+							</configuration>
+						</children>
+					</treemenu>
+                </children>
+            </vesextensions>
+        </menu>
+</adminhtml>		
+    <frontend>
+        <translate>
+            <modules>
+                <Venustheme_TreeMenu>
+                    <files>
+                        <default>Venustheme_TreeMenu.csv</default>
+                    </files>
+                </Venustheme_TreeMenu>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <treemenu>
+                    <file>treemenu.xml</file>
+                </treemenu>
+            </updates>
+        </layout>
+		
+        <routers>
+            <treemenu>
+                <use>standard</use>
+                <args>
+                    <module>Venustheme_TreeMenu</module>
+                    <frontName>treemenu</frontName>
+                </args>
+            </treemenu>
+        </routers>  
+		<events>
+            <controller_action_layout_generate_blocks_after>
+                <observers>
+                    <venustheme_treemenu_observer>
+                        <type>singleton</type>
+                        <class>Venustheme_TreeMenu_Model_Observer</class>
+                        <method>beforeRender</method>
+                    </venustheme_treemenu_observer>
+                </observers>
+            </controller_action_layout_generate_blocks_after>
+        </events>
+	</frontend>	
+    <global>  		     
+        <blocks>
+            <venustheme_treemenu>
+                <class>Venustheme_TreeMenu_Block</class>
+            </venustheme_treemenu>
+        </blocks>
+        <models>
+            <venustheme_treemenu>
+                <class>Venustheme_TreeMenu_Model</class>
+                <resourceModel>venustheme_treemenu_mysql4</resourceModel>
+            </venustheme_treemenu>
+            <venustheme_treemenu_mysql4>
+                <class>Venustheme_TreeMenu_Model_Mysql4</class>
+                <entities>
+                    <banner>
+                        <table>venustheme_treemenu_banner</table>
+                    </banner>
+                </entities>
+            </venustheme_treemenu_mysql4>
+        </models>
+        <helpers>
+            <venustheme_treemenu>
+                <class>Venustheme_TreeMenu_Helper</class>
+            </venustheme_treemenu>
+        </helpers>
+        <resources>
+            <venustheme_treemenu_setup>
+                <setup>
+                    <module>Venustheme_TreeMenu</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </venustheme_treemenu_setup>
+            <venustheme_treemenu_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </venustheme_treemenu_write>
+            <venustheme_treemenu_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </venustheme_treemenu_read>
+        </resources>
+       
+    </global>  
+
+    <default>
+        <venustheme_treemenu>
+            <venustheme_treemenu>
+                <enable_module>1</enable_module>
+				<show>1</show>
+				<theme>default</theme>
+                <enable_jquery>0</enable_jquery>
+				<showtitle>1</showtitle>
+				<title>Categories</title>
+				<menustyle>Accordion</menustyle> <!-- Tree, Dropdown, Accordion -->
+				<event>click</event>
+				<blockPosition>right</blockPosition>
+				<blockDisplay>before</blockDisplay>
+				<menuAssignment>all</menuAssignment>
+            </venustheme_treemenu>
+        </venustheme_treemenu>	
+    </default>
+</config>  

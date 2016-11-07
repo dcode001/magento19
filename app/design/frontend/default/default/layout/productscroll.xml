@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<!--reference name="content">
+			<block type="venustheme_productscroll/list" name="ves.productscroll" before="-"/>
+		</reference-->
+    </default>
+	
+	<cms_index_index translate="label">
+		<reference name="promotetop">
+			<block type="venustheme_productscroll/list" name="ves.productscroll" after="-" />
+		</reference>
+	</cms_index_index>
+	
+	
+</layout>

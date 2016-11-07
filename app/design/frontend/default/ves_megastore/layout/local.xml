@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <default>
+	
+		<reference name="root">
+		</reference>
+		
+		<reference name="header">
+			<block type="core/template" name="links_top" as="links_top" template="page/template/links-top.phtml"/>
+			<block type="page/switch" name="store_language" as="store_language" template="page/switch/languages.phtml"/>
+		</reference>
+		
+
+		<reference name="footer">		
+			<block type="cms/block" name="static-footer" as="static-footer" >
+				<action method="setBlockId"><block_id>static-footer</block_id></action>
+			</block>
+			<block type="cms/block" name="static-footer-1" as="static-footer-1" >
+				<action method="setBlockId"><block_id>static-footer-1</block_id></action>
+			</block>
+			<block type="cms/block" name="static-footer-2" as="static-footer-2" >
+				<action method="setBlockId"><block_id>static-footer-2</block_id></action>
+			</block>	
+		</reference>		
+		<remove name="left.newsletter"/>	
+	</default>
+	
+	<cms_index_index>
+
+	</cms_index_index>	
+</layout>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Venustheme_ProductScroll>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Venustheme_ProductScroll>
+    </modules>
+</config>

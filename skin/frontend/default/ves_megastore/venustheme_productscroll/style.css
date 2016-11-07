@@ -1,0 +1,152 @@
+ 
+.ves-productscroll {
+	background:#FFF;
+	margin-bottom:12px;
+	clear:both;
+}
+.ves-productscroll, .ves-productscroll .responsive {
+	padding:0px
+}
+
+
+.ves-productscroll   ul {
+    display: block;
+    height: 100%;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.ves-productscroll ul li {
+    display: block;
+    float: left;
+    height: 100%;
+    margin-right: -1px;
+    padding: 0;
+    width: 189px;
+}
+
+.ves-productscroll ul li .product-container {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+ 
+.ves-productscroll img {
+    height: auto;
+    max-width: 100%;
+} 
+
+.ves-productscroll .block-title {
+    color: #6E6662;
+    font-size: 28px;
+    margin-bottom: 0;
+
+}
+	.ves-productscroll .block-title  .pretext{
+	   clear: both;
+		color: #808181;
+		display: block;
+		font-size: 11px;
+ }
+.ves-productscroll.responsive {
+    width: auto;
+}
+.ves-productscroll .productscroll-nav {
+    position: absolute;
+    right: 10px;
+    top: -32px;
+    padding:10px;
+}
+	.ves-productscroll .productscroll-nav a {
+		outline: medium none;
+		text-decoration: none;
+	}
+	.ves-productscroll .next, .ves-productscroll .prev {
+		background: url("images/carousel-nav.png") no-repeat scroll 0 0 transparent;
+		height: 20px;
+		position: absolute;
+		top: 0;
+		width: 20px;
+	}
+	.ves-productscroll .next {
+		background-position: -33px -33px;
+		right: 0;
+	}
+	.ves-productscroll .next:hover {
+		background-position: -33px 0;
+	}
+	.ves-productscroll .prev {
+		background-position: 0 -33px;
+		right: 20px;
+	}
+	.ves-productscroll .prev:hover {
+		background-position: 0 0;
+	}
+
+.product-container .product-image{
+    position: relative;
+	width:96%;
+	height:100%;
+	overflow:hidden;
+	
+}
+.product-container .product-image:hover .productscroll-action{
+	display:block
+}
+.product-container .play-icon {
+    background: url("images/play.png") no-repeat scroll center center transparent;
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 168px;
+}
+.product-container .black-overlay {
+    background: none repeat scroll 0 0 #000000;
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    opacity: 0.3;
+    width: 100%;
+}
+.ves-pager {
+    padding: 10px;
+	height: 0px;
+    position: absolute;
+    right: 60px;
+    top: -30px;
+	}
+	.ves-pager a {
+		background-image: url("images/pagination.png");
+		background-position: 0 0;
+		padding-top: 13px;
+		width: 13px;
+		display: inline-block;
+		
+	}
+	.ves-pager a:hover {
+		background-position: 0 -26px;
+	}
+	.ves-pager a.selected {
+		background-position: 0 -13px;
+		cursor: default;
+	}
+	.ves-pager a span {
+		display: none;
+	}
+
+.product-icon {
+	 position: absolute;
+    top: 8px;
+    width: 52px;
+    z-index: 9999; left: 8px;
+}
+.product-icon .new{background:url(images/btn-new.png)}
+.product-icon .feature{background:url(images/btn-hot.png)}
+.product-icon > span {
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: block;
+    height: 52px;
+   
+}

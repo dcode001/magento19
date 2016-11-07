@@ -1,0 +1,116 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<?php
+	 $helper = Mage::helper('ves_tempcp/data');
+	 $config = $helper->get();
+	 $cookies = Mage::getModel('core/cookie')->get();
+	 $skin_default =  ( !isset($cookies['skin']) || (isset($cookies['skin']) && empty($cookies['skin']))) ? $config["skin"] : $cookies["skin"];
+	 $bgpattern = ( !isset($cookies['bgpattern']) || (isset($cookies['bgpattern']) && empty($cookies['bgpattern']))) ? $config["backgroundpattern"] : $cookies["bgpattern"];
+	 $layout = ( !isset($cookies['layout']) || (isset($cookies['layout']) && empty($cookies['layout']))) ? $config["layout"] : $cookies["layout"];
+	 $responsive = ( !isset($cookies['responsive']) || ( isset($cookies['responsive']) && empty($cookies['responsive']))) ? $config['responsive'] : $cookies['responsive'];
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+<?php if( $config['enable_customfont'] ): ?>
+	<?php echo $this->getLayout()->createBlock("ves_tempcp/googlefont")->setConfig( $config )->toHtml( );?>
+<?php else : ?>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl(); ?>css/font.css" media="all" />
+	<link href='http://fonts.googleapis.com/css?family=Play:700' rel='stylesheet' type='text/css'>
+<?php endif; ?>
+
+</head>
+<body <?php echo $this->getBodyClass()?' class="'.$this->getBodyClass() ." ".$bgpattern.' '.$layout.'"':'class="'.$bgpattern.' '.$layout.'"' ?> id="<?php echo $bgpattern;?>">
+<?php echo $this->getChildHtml('after_body_start') ?>
+<div id="ves-wrapper" class="wrapper">
+    <?php echo $this->getChildHtml('global_notices') ?>
+    <div id="ves-page" class="page">
+        <?php echo $this->getChildHtml('header') ?>
+		
+		<?php if( $slider = $this->getChildHtml('slider') ){ ?>
+		<!-- slideshow module //-->
+		<div id="ves-slider-top" class="slider-top">
+			<div class="container clearfix">
+				<div class="main-slider">
+					<div class="wrap-slider-top">
+						<?php echo $slider; ?>			
+					</div>
+				</div>
+			</div>
+		</div>	
+		<!-- end slideshow module //-->		
+		<?php } ?>
+		
+		<?php if( $promotetop = $this->getChildHtml('promotetop') ){ ?>
+			<!-- sptop-container //-->
+			<div id="ves-promotetop" class="clearfix">
+				<div class="container">
+					<?php echo $promotetop; ?>
+				</div>	
+			</div>	
+			<!-- end sptop-container //-->							
+		<?php } ?>
+		
+        <div id="ves-col2-left-layout" class="main-container col2-left-layout">
+            <div id="ves-main" class="container clearfix">
+                <?php echo $this->getChildHtml('breadcrumbs') ?>
+
+				<div id="current-content clearfix">					
+					<div id="ves-col-main" class="col-main">
+						<!-- main content -->
+						<?php echo $this->getChildHtml('global_messages') ?>
+						<?php echo $this->getChildHtml('content') ?>
+						<!-- end main content -->		
+					</div>		
+					<div id="ves-col-left" class="col-left sidebar"><?php echo $this->getChildHtml('left') ?></div>
+				</div>
+				
+			<!-- [PROMOTEBOTTOM] -->
+			<?php if( $promotebottom = $this->getChildHtml('promotebottom') ){ ?>
+			<div id="ves-promotebottom" class="clearfix">
+				<div class="container">					
+					<?php echo $promotebottom; ?>
+				</div>
+			</div>
+			<?php } ?>
+				
+            </div>
+        </div>
+		
+        <?php echo $this->getChildHtml('footer') ?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+    </div>
+</div>
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>

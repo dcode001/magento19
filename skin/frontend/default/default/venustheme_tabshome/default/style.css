@@ -1,0 +1,61 @@
+.vesclear:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.vesclear {
+	display: inline-block;
+}
+ 
+html[xmlns] .vesclear {
+	display: block;
+}
+ 
+* html .vesclear {
+	height: 1%;
+}
+.ves-hometab img{max-width:100%;}
+.ves-hometab { width:100%; }
+
+.ves-hometab .hometab-nav { overflow: hidden; margin: 0 0 10px 0; }
+.ves-hometab .hometab-nav li { width: 97px; float: left; margin: 0 10px 0 0; }
+.ves-hometab .hometab-nav li.last { margin-right: 0; }
+.ves-hometab .hometab-nav li a { display: block; padding: 5px; background: #959290; color: white; font-size: 10px; text-align: center; border: 0; }
+.ves-hometab .hometab-nav li a:hover { background-color: #111; }
+
+.ves-hometab ul { list-style: none; }
+.ves-hometab .hometab-nav ul li a { display: block; border-bottom: 1px solid #666; padding: 4px; color: #666; }
+.ves-hometab .hometab-nav ul li a.current,
+.ves-hometab .hometab-nav ul li a:hover { background: #fe4902; color: white; }
+.ves-hometab .hometab-nav ul li:last-child a { border: none; }
+ 
+
+
+
+.hometab-contents li > div{ }
+.hometab-contents li h4{ height:40px; }
+/** 3 items per row **/
+
+.hometab-contents  li{  
+	float: left;
+    margin-bottom: 22px;
+    margin-right: 22px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+	height:440px;
+}
+.hometab-contents  .column1 li {width:100%}
+.hometab-contents  .column2 li {width:48%}
+.hometab-contents  .column3 li {width:30%}
+.hometab-contents  .column4 li {width:22%}
+.hometab-contents  .column5 li {width:17%}
+.hometab-contents  li.last{ margin-right:0}	
+.hometab-contents .short-description{height:60px; overflow:hidden}
+			
+			
+			

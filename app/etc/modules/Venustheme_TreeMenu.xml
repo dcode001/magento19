@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Venustheme_TreeMenu>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Venustheme_TreeMenu>
+    </modules>
+</config> 

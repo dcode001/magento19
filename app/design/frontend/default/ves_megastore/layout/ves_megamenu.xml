@@ -1,0 +1,1 @@
+<?xml version="1.0"?><layout version="0.1.0">	<default>				<reference name="header">			<block type="core/text_list" name="megamenu" as="megamenu" translate="label">				<block type="ves_megamenu/top" name="ves.megamenu" before="-"/>				</block>		</reference>    </default></layout>

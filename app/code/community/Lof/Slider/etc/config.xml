@@ -1,0 +1,223 @@
+<?xml version="1.0"?>  
+<config>  
+	<modules>  
+		<Lof_Slider>  
+			<version>1.1.0</version>  
+		</Lof_Slider>  
+	</modules>  
+	<frontend>
+		<translate>
+			<modules>
+				<Lof_Slider>
+					<files>
+						<default>Lof_Slider.csv</default>
+					</files>
+				</Lof_Slider>
+			</modules>
+		</translate>
+		<layout>
+			<updates>
+				<slider>
+					<file>slider.xml</file>
+				</slider>
+			</updates>
+		</layout>
+		<events>
+			<controller_action_layout_generate_blocks_after>
+				<observers>
+					<lof_slider_observer>
+						<type>singleton</type>
+						<class>Lof_Slider_Model_Observer</class>
+						<method>beforeRender</method>
+					</lof_slider_observer>
+				</observers>
+			</controller_action_layout_generate_blocks_after>
+		</events>
+	</frontend>	
+	<global>  		     
+		<blocks>
+            <lof_slider>
+                <class>Lof_Slider_Block</class>
+            </lof_slider>
+        </blocks>
+        <models>
+            <lof_slider>
+                <class>Lof_Slider_Model</class>
+                <resourceModel>lof_slider_mysql4</resourceModel>
+            </lof_slider>
+            <lof_slider_mysql4>
+                <class>Lof_Slider_Model_Mysql4</class>
+                <entities>
+                    <banner>
+                        <table>lof_slider_banner</table>
+                    </banner>
+                </entities>
+            </lof_slider_mysql4>
+        </models>
+        <helpers>
+            <lof_slider>
+                <class>Lof_Slider_Helper</class>
+            </lof_slider>
+        </helpers>
+        <resources>
+            <lof_slider_setup>
+                <setup>
+                    <module>Lof_Slider</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </lof_slider_setup>
+            <lof_slider_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </lof_slider_write>
+            <lof_slider_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </lof_slider_read>
+        </resources>
+		
+	</global>  
+	<admin>
+        <routers>
+            <slider>
+                <use>admin</use>
+                <args>
+                    <module>Lof_Slider</module>
+                    <frontName>slider</frontName>
+                </args>
+            </slider>
+        </routers>
+		
+    </admin>
+	<adminhtml>
+		
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+						<lof_slider>
+                            <title>Slider</title>
+                            <sort_order>50</sort_order>
+                            <children>
+                                <index>
+                                    <title>Manage Slider</title>
+                                    <sort_order>0</sort_order>
+                                </index>
+                                <new>
+                                    <title>Add Slider</title>
+                                    <sort_order>1</sort_order>
+                                </new>
+                            </children>
+                        </lof_slider>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <lof_slider>
+                                            <title>Lof Slider</title>
+                                        </lof_slider>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+		<menu>
+			 <landofcoder module="lof_slider">
+                <title>LandOfCoder</title>
+                <sort_order>57</sort_order>
+				<children>
+				
+				<lof_slider module="lof_slider">
+					<title>Lof Slider</title>
+					<sort_order>57</sort_order>
+					<children>
+						<slider_add module="lof_slider">
+							<title>Add  Slider</title>
+							<sort_order>0</sort_order>
+							<action>slider/adminhtml_banner/add</action>
+						</slider_add>
+						<slider_index module="lof_slider">
+							<title>Manage  Slider</title>
+							<sort_order>1</sort_order>
+							<action>slider/adminhtml_banner/index</action>
+						</slider_index>
+						<configuration translate="title" module="lof_slider">
+									<title>Configuration</title>
+									<sort_order>4</sort_order>
+									<action>adminhtml/system_config/edit/section/lof_slider</action>
+						</configuration>
+								
+					</children>
+				</lof_slider>
+				
+			 </children>
+            </landofcoder>
+        </menu>
+        <translate>
+			<modules>
+				<Lof_Slider>
+					<files>
+						<default>Lof_Slider.csv</default>
+					</files>
+				</Lof_Slider>
+			</modules>
+		</translate>
+    </adminhtml>	
+		
+	<default>
+        <lof_slider>
+            <lof_slider>
+                <show>1</show>                
+                <title>Lof Slider</title>  
+				<theme>default</theme>
+				<enable_css3>1</enable_css3>
+                <shadow>1</shadow>
+                <moduleHeight>300</moduleHeight>
+                <moduleWidth>960</moduleWidth>
+				<source>image</source> 
+				<thumbnailMode>1</thumbnailMode>  
+				<enable_jquery>0</enable_jquery>
+				<sourceProductsMode>latest</sourceProductsMode> 
+				<quanlity>10</quanlity>				
+			</lof_slider>
+			<file_source_setting>
+				<imagecategory></imagecategory>
+			</file_source_setting>
+ 			<image_source_setting>
+				<folder>media/lofimages</folder>  
+				 <description>[desc img="sl-1.jpg" url="#"]<h3>EndWar Exclusive Theater of War Hands-On </h3><p>Augue neque rutrum elit vitae nec in pretium et faucibus In. Felis non sit Phasellus hac dictumst Pellentesque Proin eu leo Phasellus. Magna eros consequat eu eu dui vel consequat ipsum dolor ipsum. Tempus quis id massa nisl ac.</p>[/desc]</description>
+			</image_source_setting>
+            <main_slider>
+				<startItem>1</startItem>  
+                <mainHeight>300</mainHeight>
+				<mainWidth>960</mainWidth>
+				<control>1</control> 
+				<showdesc>1</showdesc>
+            </main_slider>                
+      
+			<thumbnail>	
+				<navigationAlignment>horizontal</navigationAlignment> 
+				<navItemWidth>100</navItemWidth>
+				<navItemHeight>40</navItemHeight>
+				<thumbWidth>95</thumbWidth>                
+                <thumbHeight>35</thumbHeight>                         
+                <showItem>3</showItem>    
+				<useratio>0</useratio>  
+			</thumbnail>	
+			<animation>
+				<duration>2000</duration>                
+                <animation>easeInQuad</animation>  
+                <autoplay>1</autoplay>                
+                <interval>500</interval> 
+			</animation>
+               
+        </lof_slider>
+    </default>
+</config>  

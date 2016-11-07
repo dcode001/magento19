@@ -1,0 +1,24 @@
+<div class="brands-bottom">
+	<?php
+	$product = Mage::getModel('catalog/product');
+	$attributes = Mage::getResourceModel('eav/entity_attribute_collection')
+	->setEntityTypeFilter($product->getResource()->getTypeId())
+	->addFieldToFilter('attribute_code', 'computer_manufacturers');
+	$attribute = $attributes->getFirstItem()->setEntity($product->getResource());
+	$manufacturers = $attribute->getSource()->getAllOptions(false);
+	?>
+	<div class="brand-pre brand-nav"><span></span></div>
+	<ul id="manufacturer_list">
+		<?php foreach ($manufacturers as $computer_manufacturers): ?>
+		<li>		
+			<a href="http://hung.leotheme.com/ves_mt_vesstore/index.php/catalogsearch/advanced/result/?computer_manufacturers[]=<?php echo $computer_manufacturers['value'] ?>">
+			<?php echo'
+			<img src="'.Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'brands/'.str_replace(' ', '_',$computer_manufacturers['label']).'.png" alt="'.$computer_manufacturers['label'].'">
+			'?>
+				
+			</a>		
+		</li>
+		<?php endforeach; ?>
+	</ul>
+	<div class="brand-next brand-nav"><span></span></div>
+</div>

@@ -1,0 +1,54 @@
+.vesclear:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.vesclear {
+	display: inline-block;
+}
+ 
+html[xmlns] .vesclear {
+	display: block;
+}
+ 
+* html .vesclear {
+	height: 1%;
+}
+
+.ves-brand-page{
+
+}
+
+.ves-brand-page .brand-image{
+	float:left;
+	margin-right:12px;
+}
+
+.ves-brandlist-page li {
+	float:left;
+	width:46%;
+	padding-bottom:12px; 
+	padding-left:15px;
+}
+
+
+.brand-scroll {position:relative}
+	.brand-scroll li{float:left; display:block; width:125px;height:45px}
+	.brand-scroll  .youtube-desc{display:none;}
+	.brand-scroll li { padding:5px 10px;  }
+	.brand-scroll li .active {  }
+	.brand-scroll li img{ width:120px}
+	.brand-scroll li h4{font-weight:normal; font-size:100%}
+	.brand-scroll  a{display:block;position:relative}
+	.brand-scroll img{  max-width:100%}
+.brand-scroll .prev,
+.brand-scroll .next{ display:block; height:22px; width:22px; overflow:hidden;text-indent:-999em; position:absolute; top:30%;z-index:4; background:url(next-prev.png) no-repeat; }
+ .brand-scroll .prev{left:0;background-position:0 0}
+ .brand-scroll .next{right:0;background-position:-22px 0}
+ 
+  .dir-vertical .youtube-main{float:left;}
+ .dir-vertical .brand-scroll {float:left}

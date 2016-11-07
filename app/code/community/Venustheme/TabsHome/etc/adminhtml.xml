@@ -1,0 +1,22 @@
+<?xml version="1.0"?> 
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <venustheme_tabshome_info>
+                                        <title>Ves TabsHome</title>
+                                    </venustheme_tabshome_info>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,1 @@
+<?xml version="1.0"?><layout version="0.1.0">	<default>				<reference name="left">			<block type="venustheme_treemenu/list" name="ves.treemenu" before="cart_sidebar" />		</reference>    </default></layout>

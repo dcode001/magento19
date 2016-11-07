@@ -1,0 +1,10 @@
+<?php for ( $i==1; $i<=4; $i++): ?>
+<?php if( isset($configs['fonturl'.$i]) && !empty($configs['fonturl'.$i]) ) : ?>
+	<link rel="stylesheet" type="text/css" href="<?php echo $configs['fonturl'.$i]; ?>">
+	<?php if( $configs['fontselectors'.$i] ): ?>
+	<style type="text/css">
+		<?php echo $configs['fontselectors'.$i];?>{ font-family:<?php echo $configs['fontfamily'.$i]; ?>}
+	</style>
+	<?php endif; ?>
+<?php endif; ?>
+<?php endfor; ?>

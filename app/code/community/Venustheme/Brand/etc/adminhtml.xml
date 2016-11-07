@@ -1,0 +1,31 @@
+<?xml version="1.0"?> 
+<config>
+		<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <venustheme_brand>
+                                            <title>Ves Brand</title>
+                                        </venustheme_brand>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+			<modules>
+				<Venustheme_Brand>
+					<files>
+						<default>Venustheme_Brand.csv</default>
+					</files>
+				</Venustheme_Brand>
+			</modules>
+		</translate>
+</config>

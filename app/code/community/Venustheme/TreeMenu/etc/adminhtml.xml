@@ -1,0 +1,31 @@
+<?xml version="1.0"?> 
+<config>
+		<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <venustheme_treemenu>
+                                            <title>Venus TreeMenu</title>
+                                        </venustheme_treemenu>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+			<modules>
+				<Venus_TreeMenu>
+					<files>
+						<default>VenusTheme_TreeMenu.csv</default>
+					</files>
+				</Venus_TreeMenu>
+			</modules>
+		</translate>
+</config>

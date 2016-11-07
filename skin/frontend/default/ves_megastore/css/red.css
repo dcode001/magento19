@@ -1,0 +1,99 @@
+.header-container .vesmegamenu-top ul#vesmegamenu p, 
+.header-container .vesmegamenu-top ul#vesmegamenu div, 
+.header-container .vesmegamenu-top ul#vesmegamenu h3, 
+.header-container .vesmegamenu-top ul#vesmegamenu h2 ,
+.category-title h1 span,a,
+body{color:#a9a9a9}
+/***background****/
+.data-table thead th,.opc .step-title, .block-progress .block-title,
+.pager .pages li.current, .pager .pages li:hover,
+.block .block-title{background:#cb4d4d}
+/*color*/
+#ves-accordion li.active a,
+h1, h2, h3, h4, h5, h6,.block-progress dt,.product-name a:hover,.block-layered-nav dd li a:hover,
+.product-collateral .tabs li.active a,.product-collateral .tabs li:hover a,
+.product-collateral .tabs li.active a, .product-collateral .tabs li.active a:hover,
+.product-view .product-shop .price-box .price,
+#products-list .product-shop a:hover,.catalog-product-view .product-name h1,
+#ves-footer span, #ves-footer a,.category-title h1,.products-grid .product-name a:hover,
+.static-footer-1 .columns .title h3,.static-footer-1 .columns .content li a:hover,
+#ves-col-main .ves-hometab .hometab-nav ul li a.current, #ves-col-main .ves-hometab .hometab-nav ul li a:hover,
+.ves-productscroll .productscroll-widget .productscroll-title,
+.ves-hometab .hometab-contents li h4 a:hover,
+.ves-productscroll .list-productscroll ul li .productscroll-item .entry-content h4  a:hover,
+.block .colorstyle,.colorstyle,.ves-hometab .price,.special-price .price,.ves-productscroll .price,
+.ves-categoriesmenu #ves-accordion li a:hover ,.ves-categoriesmenu #ves-dropdown li a:hover,
+.regular-price .price,.ves-categoriesmenu .block-title,
+.header-container .vesmegamenu-top .group-title .menu-title,
+.header-container .vesmegamenu-top ul#vesmegamenu li a:hover,
+#ves-header .toplinks .cart-top a{color:#cb4d4d}
+/*header*/
+#ves-header .logo .img-logo{background:url(../images/logo-red.png) center no-repeat;}
+#ves-header .form-search button.button span {background:url(../images/btn_search-red.png) center center no-repeat;}
+#ves-header .toplinks .cart-top { background:url(../images/icon_cart-red.png) left center no-repeat}
+
+#ves-header .links li:hover { border:1px solid #cb4d4d;}
+#ves-header .links li:hover a{background-position: -32px 0px}
+
+.static-footer-1 .columns .content li a{color:#fff} 
+
+/**menu**/
+.header-container .vesmegamenu-top ul#vesmegamenu > li > a{color:#424242}
+.cms-home .header-container .vesmegamenu-top  ul#vesmegamenu > li.home,
+.header-container .vesmegamenu-top  ul#vesmegamenu > li:hover {background:url(../images/menu-active-red.png) bottom center no-repeat;}
+.header-container .vesmegamenu-top div.menunongroup {border-top:4px solid #cb4d4d;}
+.ves-categoriesmenu .block-title {border-top:3px solid #cb4d4d}
+.ves-categoriesmenu { border-top: 1px solid #ad5151;}
+/****tree menu****/
+.ves-categoriesmenu #ves-accordion span.head a:hover,
+.ves-categoriesmenu #ves-accordion span.head a{ background: #fff url(../images/menu_down-red.png) 0 0 no-repeat;}
+.ves-categoriesmenu #ves-accordion span.selected a:hover, 
+.ves-categoriesmenu #ves-accordion span.selected a { background: #fff url(../images/menu_up-red.png) 0 0 no-repeat;}
+.ves-categoriesmenu .block-title {background:#fff}
+.ves-categoriesmenu #ves-dropdown li a{ background: #fff url(../images/menu_down-red.png) left center no-repeat;}
+/***slide****/
+#ves-col-main ul.lof-navigator li.active img, #ves-col-main ul.lof-navigator li:hover img {border:1px solid #cb4d4d;}
+#ves-col-main .lof-slider ul.lof-navigator li:hover .arrow,
+#ves-col-main .lof-slider ul.lof-navigator li.active .arrow{ background: url(../images/arrow_slide-red.png) center no-repeat;} 
+/**tabs home**/
+#ves-col-main .ves-hometab .hometab-nav ul li a.current, #ves-col-main .ves-hometab .hometab-nav ul li a:hover{}
+#ves-col-main .ves-hometab .hometab-nav ul li a{background:#202020}
+/***button***/
+button.button span span {background:url("../images/btn_button-red.png") top left no-repeat;}
+button.button span{border:1px solid #ad5151;}
+
+/**slide**/
+.position_2 #mycarouselHolder .jcarousel-skin-tango .jcarousel-prev-horizontal {
+ background: url(../images/next-pre-red.png) left center no-repeat;}
+.position_2 #mycarouselHolder .jcarousel-skin-tango .jcarousel-next-horizontal{
+background: url(../images/next-pre-red.png) right center no-repeat;}
+
+/**product scroll**/
+.wrap-ves-productscroll .list-productscroll .next:hover,.wrap-ves-productscroll .list-productscroll .prev:hover,
+.wrap-ves-productscroll .list-productscroll .next,.wrap-ves-productscroll .list-productscroll .prev{
+ background: url(../images/next-pre-red.png) -13px center no-repeat #dee7ec;}
+.wrap-ves-productscroll .list-productscroll .prev:hover,
+.wrap-ves-productscroll .list-productscroll .prev {background-position:5px center;}
+
+/**footer**/
+.footer-newsletter input.input-text {background: url(../images/icon_newsletter.png) left center no-repeat #4d4d4d;}
+#ves-footer-container {background:#202020}
+.static-footer-1 .follow-us .switch {border:1px solid #121212}
+.static-footer-1 .follow-us .switch div {border:1px solid #343434}
+
+.static-footer-1{border-bottom: 1px solid #373737;}
+.static-footer-1 .follow-us .content .social li {background:#d77676}
+.static-footer-1 .follow-us .content .social li :hover{}
+
+/***listing**/
+.pager .pages li{border: 1px solid #cb4d4d;}
+
+/**easy tabs*/
+.product-collateral .tabs li.active, .product-collateral .tabs li:hover {}
+.product-collateral .tabs li{background:#202020;
+border-top:1px solid #202020;border-left:1px solid #202020;border-right:1px solid #202020;}
+
+
+/**brand scroll***/
+#ves-promotebottom .venus-brand-block .prev, #ves-promotebottom .venus-brand-block .next{background: url(../images/next-pre-red.png) 0 0 no-repeat;}
+#ves-promotebottom .venus-brand-block .next {background-position: -15px 0;right:5px}

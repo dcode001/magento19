@@ -1,0 +1,233 @@
+<?xml version="1.0"?>  
+<config>  
+	<modules>  
+		<Venustheme_Brand>  
+			<version>1.1.0</version>  
+		</Venustheme_Brand>  
+	</modules>  
+	<frontend>
+		<translate>
+			<modules>
+				<Venustheme_Brand>
+					<files>
+						<default>Venustheme_Brand.csv</default>
+					</files>
+				</Venustheme_Brand>
+			</modules>
+		</translate>
+		 <routers>
+            <brand>
+                <use>standard</use>
+                <args>
+                    <module>Venustheme_Brand</module>
+                    <frontName>venusbrand</frontName>
+                </args>
+            </brand>
+        </routers>
+		<layout>
+			<updates>
+				<brand module="venustheme_brand">
+					<file>venustheme_brand.xml</file>
+				</brand>
+			</updates>
+		</layout>
+		<events>
+			<controller_action_layout_generate_blocks_after>
+				<observers>
+					<venustheme_brand_observer>
+						<type>singleton</type>
+						<class>Venustheme_Brand_Model_Observer</class>
+						<method>beforeRender</method>
+					</venustheme_brand_observer>
+				</observers>
+			</controller_action_layout_generate_blocks_after>
+	 
+        </events>
+	</frontend>	
+	<global>  		     
+		<blocks>
+            <venustheme_brand>
+                <class>Venustheme_Brand_Block</class>
+            </venustheme_brand>
+        </blocks>
+        <models>
+            <venustheme_brand>
+                <class>Venustheme_Brand_Model</class>
+                <resourceModel>venustheme_brand_mysql4</resourceModel>
+            </venustheme_brand>
+            <venustheme_brand_mysql4>
+                <class>Venustheme_Brand_Model_Mysql4</class>
+                <entities>
+
+					<brand>
+                        <table>venustheme_brand_brand</table>
+                    </brand>
+				
+                </entities>
+            </venustheme_brand_mysql4>
+        </models>
+        <helpers>
+            <venustheme_brand>
+                <class>Venustheme_Brand_Helper</class>
+            </venustheme_brand>
+        </helpers>
+        <resources>
+            <venustheme_brand_setup>
+                <setup>
+                    <module>Venustheme_Brand</module>
+				
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </venustheme_brand_setup>
+            <venustheme_brand_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </venustheme_brand_write>
+            <venustheme_brand_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </venustheme_brand_read>
+        </resources>
+		<events>
+			 
+	 
+			<controller_front_init_routers>
+				<observers>
+					<venustheme_brand_observer>
+						<type>singleton</type>
+						<class>Venustheme_Brand_Model_Observer</class>
+						<method>initControllerRouters</method>
+					</venustheme_brand_observer>
+				</observers>
+			</controller_front_init_routers>
+        </events>
+	</global>  
+	<admin>
+        <routers>
+            <brand>
+                <use>admin</use>
+                <args>
+                    <module>Venustheme_Brand</module>
+                    <frontName>brand</frontName>
+                </args>
+            </brand>
+        </routers>
+    </admin>
+	<adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+						<venustheme_brand>
+                            <title>File</title>
+                            <sort_order>50</sort_order>
+                            <children>
+                                <index>
+                                    <title>Manage Brands</title>
+                                    <sort_order>0</sort_order>
+                                </index>
+                                <new>
+                                    <title>Add Brand</title>
+                                    <sort_order>1</sort_order>
+                                </new>
+                            </children>
+                        </venustheme_brand>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <venustheme_brand>
+                                            <title>Ves Brand</title>
+                                        </venustheme_brand>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+		<menu>
+            <vesextensions module="venustheme_brand">
+                <title>VenusTheme</title>
+                <sort_order>50</sort_order>
+                <children>
+					<brand translate="title" module="venustheme_brand">
+						<title>Ves Brand</title>
+						<children>
+							<add module="venustheme_brand">
+								<title>Add Brand</title>
+								<sort_order>0</sort_order>
+								<action>brand/adminhtml_brand/add</action>
+							</add>
+							<brands module="venustheme_brand">
+								<title>Manage Brands</title>
+								<sort_order>1</sort_order>
+								<action>brand/adminhtml_brand/index</action>
+							</brands>
+							
+						 
+							<configuration translate="title" module="venustheme_brand">
+								<title>Configuration</title>
+								<sort_order>5</sort_order>
+								<action>adminhtml/system_config/edit/section/venustheme_brand</action>
+							</configuration>
+						</children>
+					</brand>
+                </children>
+            </vesextensions>
+        </menu>
+        <translate>
+			<modules>
+				<Venustheme_Brand>
+					<files>
+						<default>Venustheme_Brand.csv</default>
+					</files>
+				</Venustheme_Brand>
+			</modules>
+		</translate>
+    </adminhtml>	
+		
+	<default>
+        <venustheme_brand>
+            <general_setting>
+                <show>1</show>    
+                <theme>default</theme>
+				<enable_jquery>0</enable_jquery>
+				<title>Ves Brand</title>  
+				<theme>default</theme>
+                <route>ves-brand</route>
+				<extension>html</extension>
+				<brand_imagesize>124x45</brand_imagesize>
+				<enable_icon>1</enable_icon>
+			</general_setting>
+			 
+			<module_setting>
+				<enable_scrollmodule>1</enable_scrollmodule>
+				<brandnav_parent>0</brandnav_parent>
+				<limit_items>6</limit_items>
+				<scroll_position>content</scroll_position>
+				<scroll_title></scroll_title>
+				<scrollmod_desc></scrollmod_desc>
+				<scroll_display>after</scroll_display>
+				<scroll_menuassignment>all</scroll_menuassignment>
+				<scroll_typesource>scroll</scroll_typesource>
+				<itemvisiable>6</itemvisiable>
+				<isvertical>0</isvertical>
+				<enable_brandnavmodule>1</enable_brandnavmodule>
+				<brandnav_title>Shop By Brand</brandnav_title>
+				<isdropdown>0</isdropdown>
+				<brandnav_menuassignment>all</brandnav_menuassignment>
+				<brandnav_title>Brand Categories</brandnav_title>
+				<brandnav_position>right</brandnav_position>
+				<brandnav_customposition></brandnav_customposition>
+				<brandnav_display></brandnav_display>
+				
+			</module_setting>
+        </venustheme_brand>
+    </default>
+</config>  

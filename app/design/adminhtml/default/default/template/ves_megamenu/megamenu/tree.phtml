@@ -1,0 +1,33 @@
+<?php
+/******************************************************
+ * @package Ves Megamenu module for Magento 1.4.x.x and Magento 1.7.x.x
+ * @version 1.0.0.1
+ * @author http://landofcoder.com
+ * @copyright	Copyright (C) December 2010 LandOfCoder.com <@emai:landofcoder@gmail.com>.All rights reserved.
+ * @license		GNU General Public License version 2
+*******************************************************/
+?>
+<div class="categories-side-col">
+    <div class="content-header">
+        <h3 class="icon-head head-categories"><?php echo Mage::helper('catalog')->__('MegaMenu Tree') ?></h3>
+	<?php echo $this->getImportCategoriesButtonHtml() ?><br />
+	<?php echo $this->getAddRootButtonHtml() ?><br />
+	<?php echo $this->getAddSubButtonHtml() ?>
+    </div>
+    <?php echo $this->getStoreSwitcherHtml();?>
+    <div class="tree-actions">
+        <?php if(count($this->getRoot())): ?>
+            <a href="#" onclick="console.log(simpleTreeCollection); return false;"><?php echo Mage::helper('ves_megamenu')->__('Collapse All'); ?></a> 
+			<span class="separator">|</span> <a href="#" onclick="tree.expandTree(); return false;"><?php echo Mage::helper('ves_megamenu')->__('Expand All'); ?></a>
+        <?php endif; ?>
+    </div>
+    <div class="tree-holder">
+        <div style="width:100%;min-height:400px;" id="tree-container">
+	    <?php echo $this->getTreeHtml();?>
+        </div>
+    </div>
+	
+	<div class="tree-notes">
+		<p class="note"><span class="note">Click To Category Title and keep to move for updating Parent or Sortable </span></p>
+	</div>
+</div>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?> 
+<config>
+		<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <venustheme_productscroll>
+                                            <title>Ves Product Scroll</title>
+                                        </venustheme_productscroll>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+			<modules>
+				<Venustheme_ProductScroll>
+					<files>
+						<default>Venustheme_ProductScroll.csv</default>
+					</files>
+				</Venustheme_ProductScroll>
+			</modules>
+		</translate>
+</config>

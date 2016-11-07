@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>ves_megamenu/css/tree.css</stylesheet></action>
+        </reference>
+    </default>
+    <ves_megamenu_adminhtml_megamenu_edit>
+        <reference name="left">
+            <block name="megamenu.tree" type="ves_megamenu/adminhtml_megamenu_tree" template="ves_megamenu/megamenu/tree.phtml" />
+        </reference>
+        <reference name="content">
+            <block name="megamenu.edit"  type="ves_megamenu/adminhtml_megamenu_edit" template="ves_megamenu/megamenu/edit.phtml" />
+        </reference>
+    </ves_megamenu_adminhtml_megamenu_edit>
+</layout>

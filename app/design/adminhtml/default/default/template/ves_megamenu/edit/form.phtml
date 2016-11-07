@@ -1,0 +1,479 @@
+<?php
+/******************************************************
+ * @package Ves Megamenu module for Magento 1.4.x.x and Magento 1.7.x.x
+ * @version 1.0.0.1
+ * @author http://landofcoder.com
+ * @copyright	Copyright (C) December 2010 LandOfCoder.com <@emai:landofcoder@gmail.com>.All rights reserved.
+ * @license		GNU General Public License version 2
+*******************************************************/
+$types = array(
+	'external_link'	=> 'External Link',
+	'category'		=> 'Category',
+	'product' 		=> 'Product',
+	'cms_page'		=> 'CMS Page',
+	'static_block'	=> 'Static Block'
+);
+?>
+<?php $megamenu = $this->getMegamenu(); ?>
+<div class="content-header">
+    <h3 class="icon-head head-categories"><?php echo $this->htmlEscape($this->getHeader()) . ($this->getMegamenuId() ? ' (' . Mage::helper('megamenu')->__('ID: %s', $this->getMegamenuId()) . ')' : '') ?></h3>
+    <p class="content-buttons form-buttons">
+        <?php echo $this->getResetButtonHtml() ?>
+        <?php if ($megamenu->getId()): ?>
+            <?php echo $this->getDeleteButtonHtml() ?>
+        <?php endif; ?>
+        <?php echo $this->getSaveButtonHtml() ?>
+    </p>
+</div>
+<iframe name="iframeSave" style="display:none; width:100%;" src="<?php echo $this->getJsUrl() ?>blank.html"></iframe>
+
+
+<form target="iframeSave" id="megamenu_edit_form" action="<?php echo $this->getSaveUrl() ?>" method="post" enctype="multipart/form-data">
+    <div class="no-display">
+        <input type="hidden" name="isIframe" value="1" />
+        <input name="form_key" type="hidden" value="<?php echo $this->getFormKey() ?>" />
+        <input name="store_id" type="hidden" value="<?php echo Mage::getSingleton('admin/session')->getLastViewedStore(); ?>" />
+    
+    </div>
+    <div id="category_content">
+        <?php if ((!$this->getRequest()->has('parent') && !$megamenu) || ($megamenu && !$megamenu->isRoot()) || $this->getRequest()->getParam('parent')): ?>
+            <div class="entry-edit">
+                <div class="entry-edit-head">
+                    <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('MegaMenu Type') ?></h4>
+                    <div class="form-buttons"></div>
+                </div>
+                <div id="megamenu-type" class="fieldset">
+                    <div class="hor-scroll">
+                        <table class="form-list" cellpadding="0">
+                            <tbody>
+                                <tr>
+                                    <td class="label">
+                                        <label for="megamenu_type"><?php echo $this->__('MegaMenu Type') ?><span class="required">*</span></label>
+                                    </td>
+                                    <td class="value">
+                                        <select class="input-text required-entry" id="megamenu[type]" name="megamenu[type]" onchange="changeType(this.value);">
+                                            <option value=""><?php echo $this->__('--------------------------------') ?></option>
+                                            <?php foreach ($types as $type=> $text ): ?>
+												   <?php if( $megamenu->getType() == $type ) : ?>
+													<option value="<?php echo $type?>" selected="selected" ><?php echo $text;?></option>
+													<?php else: ?>	
+													<option value="<?php echo $type?>" ><?php echo $text;?></option>
+												  <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr id="megamenu_external_link" <?php if (!$megamenu->getId() || $megamenu->getType() != 'external_link'): ?>style="display:none;"<?php endif; ?>>
+                                    <td class="label">
+                                        <label for="megamenu[article]"><?php echo $this->__('External Url') ?><span class="required">*</span></label>
+										
+                                    </td>
+                                    <td class="value">
+                                        <input <?php if ($megamenu->getType() != 'external_link'): ?>disabled="disabled"<?php endif; ?> type="text" id="megamenu[article]" name="megamenu[article]" class="input-text" value="<?php echo $megamenu->getArticle() ?>" />
+										<p class="note"><span class=""><?php echo $this->__('For Example: http://www.venustheme.com'); ?></span></p>
+								   </td>
+                                </tr>
+                                <tr id="megamenu_product" <?php if (!$megamenu->getId() || $megamenu->getType() != 'product'): ?>style="display:none;"<?php endif; ?>>
+                                    <td class="label">
+                                        <label for="megamenu[article]"><?php echo $this->__('Product Id') ?></label>
+                                    </td>
+                                    <td class="value">
+                                        <input <?php if ($megamenu->getType() != 'product'): ?>disabled="disabled"<?php endif; ?> type="text" id="megamenu[article]" name="megamenu[article]" class="input-text" value="<?php echo $megamenu->getArticle() ?>" />
+                                    </td>
+                                </tr>
+                                <tr id="megamenu_cms_page" <?php if (!$megamenu->getId() || $megamenu->getType() != 'cms_page'): ?>style="display:none;"<?php endif; ?>>
+                                    <td class="label">
+                                        <label for="megamenu[article]"><?php echo $this->__('Cms Page') ?><span class="required">*</span></label>
+                                    </td>
+                                    <td class="value">
+                                        <?php echo $this->getArticleHtml('cms_page', (!$megamenu->getId() || $megamenu->getType() != 'cms_page')); ?>
+                                    </td>
+                                </tr>
+                                <tr id="megamenu_category" <?php if (!$megamenu->getId() || $megamenu->getType() != 'category'): ?>style="display:none;"<?php endif; ?>>
+                                    <td class="label">
+                                        <label for="megamenu[article]"><?php echo $this->__('Category') ?><span class="required">*</span></label>
+                                    </td>
+                                    <td class="value">
+                                        <?php echo $this->getArticleHtml('category', (!$megamenu->getId() || $megamenu->getType() != 'category')); ?>
+                                    </td>
+                                </tr>
+                                <tr id="megamenu_static_block" <?php if (!$megamenu->getId() || $megamenu->getType() != 'static_block'): ?>style="display:none;"<?php endif; ?>>
+                                    <td class="label">
+                                        <label for="megamenu[article]"><?php echo $this->__('Static Block') ?><span class="required">*</span></label>
+                                    </td>
+                                    <td class="value">
+                                        <?php echo $this->getArticleHtml('static_block', (!$megamenu->getId() || $megamenu->getType() != 'static_block')); ?>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('MegaMenu Information') ?></h4>
+                <div class="form-buttons"></div>
+            </div>
+            <div id="megamenu-form" class="fieldset">
+                <div class="hor-scroll">
+                    <table class="form-list" cellpadding="0">
+                        <tbody>
+							
+							
+							 <tr>
+                                <td class="label">
+                                    <label for="megamenu[parent_id]"><?php echo $this->__('Parent Menu') ?><span class="required">*</span></label>
+                                </td>
+                                <td class="value">
+
+								<?php if ($this->getRequest()->has('parent')): ?>
+								   <?php echo $this->getMenus( (int)$this->getRequest()->getParam('parent')  ); ?>
+
+								<?php else: ?>
+									<?php
+
+									echo $this->getMenus($megamenu->getParentId()); ?>
+								<?php endif; ?> 
+                                </td>
+                            </tr>
+							
+                            <tr>
+                                <td class="label">
+                                    <label for="megamenu[title]"><?php echo $this->__('Title') ?><span class="required">*</span></label>
+                                </td>
+                                <td class="value">
+                                    <input type="text" id="megamenu[title]" name="megamenu[title]" class="input-text required-entry" value="<?php echo $megamenu->getTitle() ?>" />
+                                </td>
+                            </tr>
+							<tr>
+                                <td class="label">
+                                    <label for="megamenu:show_title"><?php echo $this->__('Show Title') ?></label>
+                                </td>
+                                <td class="value">
+                                    <input class="validate-one-required-by-name" type="radio" value="1" <?php if(!$megamenu->getId() ): ?> checked="checked"<?php endif; ?><?php if ($megamenu->getId() && $megamenu->showTitle()): ?>checked="checked"<?php endif; ?> name="megamenu[show_title]" id="megamenu:show_title"/>&nbsp;<label for="megamenu:show_title"><strong><?php echo $this->__('Yes') ?></strong></label>
+                                    <input type="radio" value="0" <?php if ($megamenu->getId() && !$megamenu->showTitle()): ?>checked="checked"<?php endif; ?> name="megamenu[show_title]" id="megamenu:not_show_title">&nbsp;<label for="megamenu:not_show_title"/><strong><?php echo $this->__('No') ?></strong></label>
+                                
+									 
+								</td>
+                            </tr>
+							<tr>
+                                <td class="label">
+                                    <label for="megamenu[description]"><?php echo $this->__('Sub Title') ?></label>
+                                </td>
+                                <td class="value">
+                                    <input   id="megamenu[description]" name="megamenu[description]" class="input-text" cols="25" rows="0" value="<?php echo $megamenu->getDescription() ?>"/> 
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="label">
+                                    <label for="megamenu[menu_class]"><?php echo $this->__('Additional class') ?></label>
+                                </td>
+                                <td class="value">
+                                    <input type="text" id="megamenu[menu_class]" name="megamenu[menu_class]" class="input-text" value="<?php echo $megamenu->getMenuClass() ?>" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label">
+                                    <label for="megamenu[privacy]"><?php echo $this->__('Access Level') ?></label>
+                                </td>
+                                <td class="value">
+									<?php 
+										$gs = $this->getGroups();
+									?>
+                                    <select size="4" id="megamenu:privacy" name="megamenu[privacy]">
+										<?php foreach( $gs as $g ): ?>
+                                        <option  value="<?php echo $g['value'];?>" <?php if($megamenu->getPrivacy() == $g['value'] ) : echo 'selected="selected"'; endif; ?>>&nbsp;<?php echo $g['label']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label">
+                                    <label for="megamenu[target]"><?php echo $this->__('Target') ?></label>
+                                </td>
+                                <td class="value">
+                                    <select size="4" id="megamenu:target" name="megamenu[target]">
+                                        <option value="_self" selected="selected">&nbsp;<?php echo $this->__('Parent Window with Browser Navigation'); ?></option>
+                                        <option value="_blank">&nbsp;<?php echo $this->__('New Window with Browser Navigation'); ?></option>
+                                        <option value="_newwithout">&nbsp;<?php echo $this->__('New Window without Browser Navigation'); ?></option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label">
+                                    <label for="image"><?php echo $this->__('Icon') ?></label>
+                                </td>
+                                <td class="value">
+                                    <?php if ($megamenu->getId() && $megamenu->getImage()): ?>
+                                        <a href="<?php echo Mage::getBaseUrl('media') . $megamenu->getImage() ?>" onclick="imagePreview('megamenu_form_image'); return false;">
+                                            <img id="megamenu_form_image" class="small-image-preview v-middle" width="22" height="22" alt="<?php echo $megamenu->getTitle() ?>" title="<?php echo $megamenu->getTitle() ?>" src="<?php echo Mage::getBaseUrl('media') . $megamenu->getImage() ?>" />
+                                        </a>
+                                        <input type="file" id="image" name="image" class="input-file" value="<?php echo $megamenu->getImage() ?>" />
+                                        <span class="delete-image">
+                                            <input id="megamenu_form_delete" type="checkbox" class="checkbox" value="1" name="image[delete]" />
+                                            <label for="megamenu_form_delete"><?php echo $this->__('Delete Image') ?></label>
+                                            <input type="hidden" value="<?php echo $megamenu->getImage() ?>" name="image[value]" />
+                                        </span>
+                                    <?php else: ?>
+                                        <input type="file" id="image" name="image" class="input-file" value="" />
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+							 
+                            <tr>
+                                <td class="label">
+                                    <label for="megamenu:status"><?php echo $this->__('Published') ?></label>
+                                </td>
+                                <td class="value">
+                                    <input class="validate-one-required-by-name" type="radio" value="1" <?php if ($megamenu->getId() && $megamenu->isActive()): ?>checked="checked"<?php endif; ?> name="megamenu[status]" id="megamenu:enable"/>&nbsp;<label for="megamenu:enable"><strong><?php echo $this->__('Yes') ?></strong></label>
+                                    <input type="radio" value="2" <?php if (!$megamenu->isActive()): ?>checked="checked"<?php endif; ?> name="megamenu[status]" id="megamenu:disable"/>&nbsp;<label for="megamenu:disable"><strong><?php echo $this->__('No') ?></strong></label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+		<div class="entry-edit">
+            <div class="entry-edit-head">
+                <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('Sub MegaMenu Config') ?></h4>
+                <div class="form-buttons"></div>
+            </div>
+            <div id="megamenu-form" class="fieldset">
+                <div class="hor-scroll">
+                    <table class="form-list" cellpadding="0">
+						<tbody>
+							
+								<tr>
+									<td class="label">
+										<label for="megamenu:is_group"><?php echo $this->__('Group') ?></label>
+									</td>
+									<td class="value">
+										<input class="validate-one-required-by-name" type="radio" value="1" <?php if ($megamenu->getId() && $megamenu->isGroup()): ?>checked="checked"<?php endif; ?> name="megamenu[is_group]" id="megamenu:is_group" />&nbsp;<label for="megamenu:is_group"><strong><?php echo $this->__('Yes') ?></strong></label>
+										<input type="radio" value="2" <?php if (!$megamenu->isGroup()): ?>checked="checked"<?php endif; ?> name="megamenu[is_group]" id="megamenu:not_group" />&nbsp;<label for="megamenu:not_group"><strong><?php echo $this->__('No') ?></strong></label>
+										<br/>
+										<p class="note"><span class=""><?php echo $this->__('Allow Combine All Submenu and display  inside Content of parent'); ?></span></p>
+									</td>
+								</tr>
+                           
+                            <tr>
+                                <td class="label">
+                                    <label for="megamenu[type_submenu]"><?php echo $this->__('Submenu Type') ?></label>
+                                </td>
+                                <td class="value">
+									<?php
+										$submenu_content = $megamenu->getSubmenuContent();
+										$type_submenu_arr = array("0"=>$this->__('Child menu items'),
+																						"1"=>$this->__('Categories'),
+																						"2"=>$this->__('Products'),
+																						"3"=>$this->__('Static Block'),
+																						"4"=>$this->__('CMS Page'),
+																						"5"=>$this->__('Text'));
+										$submenutype_arr = array();
+										if(!empty($submenu_content)){
+											$submenutype_arr = explode(":", $submenu_content);
+										}
+									?>
+                                    <select id="megamenu:type_submenu" name="megamenu[type_submenu]" onchange="showSubmenuType(this)">
+                                        <?php
+											foreach($type_submenu_arr as $key=>$val){
+												if($key == $megamenu->getTypeSubmenu()){
+													echo '<option value="'.$key.'" selected="selected">'.$val.'</option>';
+												}else{
+													echo '<option value="'.$key.'">'.$val.'</option>';
+												}
+											}
+										?>
+                                    </select>
+									<br/>
+									<p class="note"><span class=""><?php echo $this->__("Choice content to shown in submenus"); ?></span></p>
+                                </td>
+                            </tr>
+							<tr id="type_submenu_1" <?php if (!$megamenu->getId() || $megamenu->getTypeSubmenu() != '1'): ?>style="display:none;"<?php endif; ?>>
+								<td class="label">
+									
+								</td>
+								<td class="value">
+									<div class="wrap_content">
+										<div class="content_left">
+											<?php echo $this->getSubmenutypeHtml('category', !$megamenu->getId() || $megamenu->getTypeSubmenu() != '1', true); ?>
+										</div>
+									 <div class="content_right">
+										<?php echo $this->__('Sort by: '); ?>
+										<?php
+											$sortbyCate = "";
+											if ($megamenu->getId() && $megamenu->getTypeSubmenu() == '1'){
+												$sortbyCate = isset($submenutype_arr[1])?$submenutype_arr[1]:"";
+											}
+											$submenu_arr = array("name-DESC"=>"Name (DESC)",
+																				  "name-ASC"=>"Name (ASC)",
+																				  "category_id-DESC"=>"Id (DESC)",
+																				  "category_id-ASC"=>"Id (ASC)",
+																				  "created_at-DESC"=>"Created (DESC)",
+																				  "created_at-ASC"=>"Created (ASC)");
+										?>
+										<select name="megamenu[submenu_sortby]">
+											<?php
+												foreach($submenu_arr as $key=>$val){
+													if($key == $sortbyCate){
+														echo '<option value="'.$key.'" selected="selected">'.$val.'</option>';
+													}else{
+														echo '<option value="'.$key.'">'.$val.'</option>';
+													}
+												}
+											?>
+										</select>
+									 </div>
+									 </div>
+								<td>
+							</tr>
+							<tr id="type_submenu_2" <?php if (!$megamenu->getId() || $megamenu->getTypeSubmenu() != '2'): ?>style="display:none;"<?php endif; ?>>
+								<td class="label">
+								
+								</td>
+								<td class="value">
+									<div class="wrap_content">
+										<div class="content_left">
+											<?php echo $this->getSubmenutypeHtml('category', (!$megamenu->getId() || $megamenu->getTypeSubmenu() != '2'), true); ?>
+										</div>
+										 <div class="content_right">
+											<?php echo $this->__('Sort by: '); ?>
+											<?php
+												$sortbyArticle = "";
+												$limitArticle = 0;
+												if ($megamenu->getId() && $megamenu->getTypeSubmenu() == '2'){
+													$sortbyArticle = isset($submenutype_arr[1])?$submenutype_arr[1]:"";
+													$limitArticle = isset($submenutype_arr[2])?$submenutype_arr[2]:0;
+												}
+												$submenu_arr = array("name-DESC"=>"Name (DESC)",
+																				  "name-ASC"=>"Name (ASC)",
+																				  "product_id-DESC"=>"Id (DESC)",
+																				  "product_id-ASC"=>"Id (ASC)",
+																				  "created_at-DESC"=>"Created (DESC)",
+																				  "created_at-ASC"=>"Created (ASC)");
+											?>
+											<select name="megamenu[submenu_sortby2]">
+												<?php
+													foreach($submenu_arr as $key=>$val){
+														if($key == $sortbyArticle){
+															echo '<option value="'.$key.'" selected="selected">'.$val.'</option>';
+														}else{
+															echo '<option value="'.$key.'">'.$val.'</option>';
+														}
+													}
+												?>
+											</select>
+											<br/>
+											<br/>
+											<span><?php echo $this->__("Limit: "); ?></span>
+											<input type="text" name="megamenu[submenu_limit]" value="<?php echo $limitArticle; ?>"/>
+										 </div>
+									 </div>
+								<td>
+							</tr>
+							<tr id="type_submenu_3" <?php if (!$megamenu->getId() || $megamenu->getTypeSubmenu() != '3'): ?>style="display:none;"<?php endif; ?>>
+								<td class="label">
+								
+								</td>
+								<td class="value">
+									<?php echo $this->getSubmenutypeHtml('static_block', !$megamenu->getId() || $megamenu->getTypeSubmenu() != '3', true); ?>
+								<td>
+							</tr>
+							<tr id="type_submenu_4" <?php if (!$megamenu->getId() || $megamenu->getTypeSubmenu() != '4'): ?>style="display:none;"<?php endif; ?>>
+								<td class="label">
+								
+								</td>
+								<td class="value">
+									<?php echo $this->getSubmenutypeHtml('cms_page', !$megamenu->getId() || $megamenu->getTypeSubmenu() != '4', true); ?>
+								<td>
+							</tr>
+							<tr id="type_submenu_5" <?php if (!$megamenu->getId() || $megamenu->getTypeSubmenu() != '5'): ?>style="display:none;"<?php endif; ?>>
+								<td class="label">
+								
+								</td>
+								<td class="value">
+									
+									<textarea name="megamenu[content_text]" cols="25" rows="10" id="megamenu:content_text"><?php echo $megamenu->getContentText();?></textarea>
+								<td>
+							</tr>
+                            
+                            <tr>
+                                <td class="label">
+                                    <label for="megamenu[submenu_width]"><?php echo $this->__('SubMenu Width') ?></label>
+                                </td>
+                                <td class="value">
+                                    <input id="megamenu[submenu_width]" name="megamenu[submenu_width]" class="input-text" value="<?php echo $megamenu->getSubmenuWidth() ?>"/> 
+									<p class="note"><span class=""><?php echo $this->__('Set Width for SubMenu\'s Wapper. As Default this width is calculated equal 200px * Number Of Columns'); ?></span></p>
+                                </td>
+                            </tr>
+							<tr>
+                                <td class="label">
+                                    <label for="megamenu[colums]"><?php echo $this->__('Columns') ?></label>
+                                </td>
+                                <td class="value">
+                                    <input type="text" id="megamenu[colums]" name="megamenu[colums]" class="input-text" value="<?php echo ((int)$megamenu->getColums()>0?$megamenu->getColums():1); ?>" />
+                                    <p class="note"><span class=""><?php echo $this->__('Number of columns. works for first level menu items, with group = Y for each subset going into each colums'); ?></span></p>
+                                </td>
+                            </tr>
+                           	
+                            <tr>
+                                <td class="label">
+                                    <label for="megamenu[colum_width]"><?php echo $this->__('SubMenu Column Width') ?></label>
+                                </td>
+                                <td class="value">
+                                    <input type="text" id="megamenu[colum_width]" name="megamenu[colum_width]" class="input-text" value="<?php echo $megamenu->getColumWidth() ?>"/>
+									<p class="note"><span class=""><?php echo $this->__('Set Width for each Column. As Default this width is calculated equal 200px * Number Of Columns'); ?></span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label">
+                                    <label for="megamenu[submenu_colum_width]"><?php echo $this->__('Submenu Column[i] Width') ?></label>
+                                </td>
+                                <td class="value">
+                                    <textarea id="megamenu[submenu_colum_width]" name="megamenu[submenu_colum_width]" class="input-text"><?php echo $megamenu->getSubmenuColumWidth() ?></textarea>
+                                    <p class="note"><span class=""><?php echo $this->__('Set Detail Width for Columns you needs with format: cols1=300 col2=400'); ?></span></p>
+                                </td>
+                            </tr>
+                           
+							
+							<?php 
+							//	echo '<pre>'.print_r( Mage::getSingleton('cms/wysiwyg_config')->getConfig() ,1 ); die;
+							?>
+							<!--
+                            <tr>
+                                <td class="label">
+                                    <label for="megamenu[position_type]"><?php echo $this->__('Position Type') ?></label>
+                                </td>
+                                <td class="value">
+                                    <select id="megamenu:position_type" name="megamenu[position_type]">
+                                        <option value="top"><?php echo $this->__('Top'); ?></option>
+                                        <option value="left"><?php echo $this->__('Left'); ?></option>
+                                    </select>
+                                </td>
+                            </tr>-->
+                           
+                         
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+    </div>
+</form>
+<script language="javascript" type="text/javascript">
+ function showSubmenuType(obj){
+	var currentValue = obj.value;
+	for(i = 0; i<=5; i++){
+		if(i == currentValue){
+			jQuery("#type_submenu_"+currentValue).show();
+			jQuery("#type_submenu_"+currentValue).find("select").eq(0).removeAttr("disabled");
+		}else{
+			jQuery("#type_submenu_"+i).hide();
+			jQuery("#type_submenu_"+i).find("select").eq(0).attr("disabled","disabled");
+		}
+	}
+ }
+</script>

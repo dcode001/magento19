@@ -1,0 +1,40 @@
+<?php $cols = (int)$this->getConfig( "columns" ); ?>
+<div class="venus-brand-block block">
+	<?php if( $this->getConfig("scroll_title") ) : ?>
+	<div class="block-title">
+        <strong><?php echo $this->getConfig( "scroll_title" ); ?></strong>
+	</div>	
+	<?php endif; ?>
+	
+	<div class="block-content">
+		<div class="brand-scroll">
+			<?php if( count($brands) ): ?>
+			<ul >
+				<?php foreach( $brands as $brand  ):  ?>
+				<li>
+					<a href="<?php echo $brand->getLink(); ?>" title="<?php echo $brand->getTitle(); ?>">
+					<img src="<?php echo $brand->getImageUrl("l");?>" title="<?php echo $brand->getTitle(); ?>"/>
+					</a>
+				</li>
+			<?php endforeach; ?>	
+			</ul>
+			<?php endif; ?>
+			
+
+		</div>	
+			<?php if( (int)$this->getConfig("itemvisiable",6) < count($brands) ) : ?>	
+			<a class="prev" href=""><span>Prev</span></a>
+			<a class="next" href=""><span>Next</span></a>
+			<?php endif; ?>		
+	</div>
+</div>
+<script type="text/javascript">
+<?php if( count($brands) > 1 ) : ?>
+	$jbrandCarouselLite(".venus-brand-block .brand-scroll").jCarouselLite({
+		btnNext: ".venus-brand-block .next",
+		btnPrev: ".venus-brand-block .prev",
+		visible: <?php echo (int)$this->getConfig("itemvisiable",6); ?>,
+		vertical:<?php echo (int)($this->getConfig("isvertical",0) ); ?>
+	});
+<?php endif?>
+</script>

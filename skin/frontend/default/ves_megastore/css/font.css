@@ -1,0 +1,6 @@
+/*****fonts********/
+body{font-family:Arial,Helvetica,sans-serif;}
+#upsell-product-table .price,.menu-product .price,
+.ves-productscroll .price,.ves-hometab .price,
+.product-view .product-shop .price-box .price,
+.category-products .price{font-family: 'Play', sans-serif;}

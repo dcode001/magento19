@@ -1,0 +1,16 @@
+<?php 
+//	echo '<pre>'.print_r($config,1);die;
+?>
+<script style="text/javascript">
+	ddsmoothmenu.init({
+		mainmenuid: "vesmegamenu<?php echo $config['topCategory']; ?>",
+		overtime:<?php echo ((int)$config['overTime']?(int)$config['overTime']:300); ?>,
+		outtime:<?php echo ((int)$config['outTimeDuration']?(int)$config['outTimeDuration']:300); ?>,
+		showdelay:<?php echo ((int)$config['showDelay']?(int)$config['showDelay']:100); ?>,
+		hidedelay:<?php echo ((int)$config['hideDelay']?(int)$config['hideDelay']:100); ?>,
+		lofZindex: 200,
+		orientation: 'h',
+		classname: 'ddsmoothmenu',
+		contentsource: 'markup'
+		}); 
+</script>

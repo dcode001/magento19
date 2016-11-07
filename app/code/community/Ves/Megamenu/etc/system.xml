@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <ves translate="label" module="ves_megamenu">
+            <label>Venus Extensions</label>
+            <sort_order>210</sort_order>
+        </ves>
+    </tabs>
+	<sections>
+        <ves_megamenu>
+            <label>Ves Megamenu</label>
+            <tab>ves</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+				
+            	<ves_megamenu translate="label">
+					
+                    <label>General Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>     
+							<last_update translate="label">
+							<label>Current Update Time</label>
+							<frontend_type>label</frontend_type>
+							<frontend_model>ves_megamenu/system_config_form_field_notification</frontend_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</last_update>
+						<show translate="label" module="core">
+							<label>Enabled</label>
+							<sort_order>10</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</show>							
+						 <enable_jquery translate="label">
+                            <label>Enable load Jquery</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>180</sort_order>
+                            <comment>Enable load Jquery library</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enable_jquery>
+						<responsive translate="label" module="core">
+							<label>Enable Responsive</label>
+							<comment>Allow the megamenu show on Iphone, android, and other smartphone.</comment>
+							<sort_order>45</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</responsive>	
+						
+					</fields>
+				</ves_megamenu>
+				
+				<top_menu_setting>
+					<label>Top Menu Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1999</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<showTop translate="label" module="core">
+							<label>Show Top Menu</label>
+							<sort_order>10</sort_order>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</showTop>	
+						
+						<topCategory translate="label">
+                            <label>Default Parent Category</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ves_megamenu/system_config_source_listCategories</source_model>
+                            <sort_order>20</sort_order>
+							<comment>Choose Template for your menu top</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </topCategory>
+						<topTheme translate="label">
+                            <label>Menu Top Theme - Layout</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ves_megamenu/system_config_source_listTheme</source_model>
+                            <sort_order>20</sort_order>
+							<comment>Choose Template for your menu top</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </topTheme>
+						<topModuleClass translate="label">
+                            <label>Module Class</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>25</sort_order>
+							<comment>Type the module class for top menu exm: menu_top ...</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </topModuleClass>
+						 <topMenuItemWidth translate="label">
+                            <label>Default Menu Item Width</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </topMenuItemWidth>
+						
+					</fields>
+				</top_menu_setting>
+			 
+				
+				<effect_setting>
+					<label>Effect Setting</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5000</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields> 				
+						<overTime translate="label">
+                            <label>Over Time</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+							<comment>Type the over time value ...</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </overTime>
+						<outTimeDuration translate="label">
+                            <label>Out Time Duration</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+							<comment>Type the out time duration value ...</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </outTimeDuration>
+						<showDelay translate="label">
+                            <label>Show Delay</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+							<comment>Type the delay value ...</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </showDelay>
+						<hideDelay translate="label">
+                            <label>Hide Delay</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+							<comment>Type the delay value ...</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </hideDelay>
+					</fields> 
+                </effect_setting>
+
+         		  <advanded_parameter>
+					<label>Information - Support</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>6001</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields> 
+						<module_information translate="label">
+							<label>Set Module Visable On Pages, Position</label>
+							<frontend_type>label</frontend_type>
+							<frontend_model>ves_megamenu/system_config_form_field_information</frontend_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</module_information>                        
+					</fields>
+				</advanded_parameter>	
+            </groups>
+        </ves_megamenu>
+    </sections>    
+</config>

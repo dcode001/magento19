@@ -1,0 +1,104 @@
+<?php $moduleId = rand().time(); ?><?php $_helper = $this->helper('catalog/output'); ?>
+<div class="ves-productscroll wrap-ves-productscroll">	
+	<?php if($this->getConfig('title')){?>
+	<div class="block-title">
+		<h2><?php echo $this->getConfig('title')?></h2>
+		<?php if( ($pretext=$this->getConfig("pretext")) && !$cms ) : ?>
+			<div class="pretext"><?php echo $pretext;?></div>
+		<?php endif; ?>
+	</div>
+	<?php }?>
+	<div class="block-content">
+		 <div class="list-productscroll responsive"> 
+			<ul id="ves-productscroll-<?php echo $moduleId;?>" >
+				<?php $i = 0; foreach ($items as $_product): ?>
+					<li><div class="product-container productscroll-item">
+						<div class="product-image image-thumb">
+							<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>">
+								<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize( $this->getConfig("thumbWidth"), $this->getConfig("thumbHeight") ) ?>" alt="<?php echo $this->htmlEscape($_product->getName()) ?>" />
+							</a>
+							
+							<?php if( $this->getConfig("show_wc") ): ?>
+								<div class="productscroll-action">
+									<a class="list-cart" href="<?php echo $_product->getProductUrl();?>" title="<?php echo $this->__('Add to cart');?>"></a>
+									<div class="add-to-links">
+										<div class="left">										
+											<a class="add-to-wishlist" href="<?php echo $this->helper('wishlist')->getAddUrl($_product);?>" title="<?php echo $this->__('Wishlist')?>"><?php echo $this->__('Wishlist')?></a>										
+										</div>
+										<div class="right">
+											<a class="add-to-compare" href="<?php echo $this->helper('catalog/product_compare')->getAddUrl($_product);?>" title="<?php echo $this->__('Compare')?>"><?php echo $this->__('Compare')?></a>
+										</div>
+									</div>	
+								</div>
+								<?php endif; ?>
+								
+						</div>
+						<div class="product-meta entry-content">
+						<?php if( $this->getConfig('show_title') ) : ?>
+							<h4>
+								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $this->htmlEscape($_product->getName()) ?></a>
+							</h4>
+							<?php endif; ?>
+							<?php if ( $this->getConfig('show_desc') ): ?>
+							<div class="short-description">
+								<?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+							</div>
+							<?php endif; ?>
+							<?php if ( $this->getConfig('review') ): ?>
+								<div class="review"><?php echo $this->getReviewsSummaryHtml($_product, 'short') ?></div>
+							<?php endif; ?>
+							<?php if($this->getConfig('show_price')): ?>
+								<div class="item-price vesclear">
+								<?php echo $this->getPriceHtml($_product, true) ?>
+								</div>
+							<?php endif; ?>
+							
+							<?php if ($this->getConfig('show_addcart') ):?>
+									<div class="button-actions">			                	
+										<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+									</div>
+							<?php endif; ?>
+							
+			
+						</div>
+					</div></li>
+				<?php endforeach; ?>
+			</ul>
+			
+			<?php if( $this->getEffectConfig("show_button") ): //start show_button?>
+			<div class="productscroll-nav">
+				<a id="vesprev-<?php echo $moduleId;?>" class="prev" href="#">&nbsp;</a>
+				<a id="vesnext-<?php echo $moduleId;?>" class="next" href="#">&nbsp;</a>
+			</div>
+			<?php endif; //end show_button?>
+			<?php if(  $this->getEffectConfig("show_pager") ): //start show_pager?>
+			<div id="vespager-<?php echo $moduleId;?>" class="ves-pager"></div>
+			<?php endif; //end show_pager?>
+			
+		</div>	
+	</div>
+</div>
+
+<script type="text/javascript">
+	jQuery('#ves-productscroll-<?php echo $moduleId;?>').carouFredSel({
+		responsive:true,
+		prev: '#vesprev-<?php echo $moduleId;?>',
+		next: '#vesnext-<?php echo $moduleId;?>',
+		pagination: "#vespager-<?php echo $moduleId;?>",
+		auto: false,
+		width: <?php echo (int)$this->getEffectConfig("slide_width");?>,
+		height: <?php echo (int)$this->getEffectConfig("slide_height");?>,
+		interval:8000,
+		scroll: {
+			items : <?php echo $this->getEffectConfig("scroll_items");?>,
+			duration : <?php echo $this->getEffectConfig("duration");?>,
+		},
+		items:{
+			width:200,
+			visible:{
+				min:1,
+				max:<?php echo $this->getEffectConfig("limit_cols");?>
+			}
+		}
+	});	
+</script>

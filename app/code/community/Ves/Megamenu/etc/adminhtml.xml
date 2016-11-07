@@ -1,0 +1,31 @@
+<?xml version="1.0"?> 
+<config>
+		<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <ves_megamenu>
+                                            <title>Ves Megamenu</title>
+                                        </ves_megamenu>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <translate>
+			<modules>
+				<Ves_Megamenu>
+					<files>
+						<default>Ves_Megamenu.csv</default>
+					</files>
+				</Ves_Megamenu>
+			</modules>
+		</translate>
+</config>
